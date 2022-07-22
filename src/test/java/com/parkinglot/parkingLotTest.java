@@ -11,7 +11,7 @@ public class parkingLotTest {
     public void should_return_parkingTicket_when_park_given_car(){
 //        given
         Car car = new Car("123");
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
 //        when
         ParkingTicket parkingTicket = parkingLot.park(car);
 //        then
@@ -21,7 +21,7 @@ public class parkingLotTest {
     public void should_return_car_when_fetchCarByParkingTicket_given_parkingTicket(){
 //        given
         Car testCar = new Car("123");
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         ParkingTicket parkingTicket = parkingLot.park(testCar);
 //        when
         Car car = parkingLot.fetchCarByParkingTicket(parkingTicket);
@@ -33,7 +33,7 @@ public class parkingLotTest {
 //        given
         Car testCar1 = new Car("123");
         Car testCar2 = new Car("456");
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         ParkingTicket parkingTicket1 = parkingLot.park(testCar1);
         ParkingTicket parkingTicket2 = parkingLot.park(testCar2);
 //        when
@@ -47,7 +47,7 @@ public class parkingLotTest {
     public void should_return_null_when_fetchCarByParkingTicket_given_wrongParkingTicket(){
 //        given
 
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         ParkingTicket parkingTicket = new ParkingTicket();
 //        when
         Car car = parkingLot.fetchCarByParkingTicket(parkingTicket);
@@ -58,12 +58,24 @@ public class parkingLotTest {
     public void should_return_null_when_fetchCarByParkingTicket_given_usedParkingTicket(){
 //        given
         Car testCar = new Car("123");
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         ParkingTicket parkingTicket = parkingLot.park(testCar);
 //        when
         Car carOne = parkingLot.fetchCarByParkingTicket(parkingTicket);
         Car carTwo = parkingLot.fetchCarByParkingTicket(parkingTicket);
 //        then
         Assertions.assertNull(carTwo);
+    }
+    @Test
+    public void should_canNotPark_when_park_given_noPosition(){
+//        given
+        Car testCar = new Car("123");
+        Car testCar2 = new Car("345");
+        ParkingLot parkingLot = new ParkingLot(1);
+//        when
+        ParkingTicket parkingTicket = parkingLot.park(testCar);
+        ParkingTicket parkingTicket2 = parkingLot.park(testCar2);
+//        then
+        Assertions.assertNull(parkingTicket2);
     }
 }
