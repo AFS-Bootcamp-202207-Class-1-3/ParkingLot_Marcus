@@ -9,9 +9,6 @@ public class Car {
         this.numberPlate = numberPlate;
     }
 
-    public String getNumberPlate() {
-        return numberPlate;
-    }
 
     @Override
     public boolean equals(Object o) {
