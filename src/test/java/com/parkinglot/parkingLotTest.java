@@ -10,7 +10,7 @@ public class parkingLotTest {
     @Test
     public void should_return_parkingTicket_when_park_given_car(){
 //        given
-        Car car = new Car();
+        Car car = new Car("123");
         ParkingLot parkingLot = new ParkingLot();
 //        when
         ParkingTicket parkingTicket = parkingLot.park(car);
@@ -20,11 +20,13 @@ public class parkingLotTest {
     @Test
     public void should_return_car_when_fetchCarByParkingTicket_given_parkingTicket(){
 //        given
-        ParkingTicket parkingTicket = new ParkingTicket();
+        Car testCar = new Car("123");
         ParkingLot parkingLot = new ParkingLot();
+        ParkingTicket parkingTicket = parkingLot.park(testCar);
 //        when
         Car car = parkingLot.fetchCarByParkingTicket(parkingTicket);
 //        then
         Assertions.assertNotNull(car);
     }
+
 }
