@@ -1,13 +1,13 @@
 package com.parkinglot.entity;
 
 public class ParkingTicket {
-    private Car car;
+    private String carNumber;
 
-    public ParkingTicket(Car car) {
-        this.car = car;
+    public ParkingTicket(String carNumber) {
+        this.carNumber = carNumber;
     }
 
-    public Car getCar() {
-        return car;
+    public String getCarNumber() {
+        return carNumber;
     }
 }

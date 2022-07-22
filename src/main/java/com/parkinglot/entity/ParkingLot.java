@@ -1,30 +1,16 @@
 package com.parkinglot.entity;
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParkingLot {
-    private List<ParkingTicket> parkingTickets = new ArrayList<>();
+    private Map<ParkingTicket,Car> parkingTicketCarMap = new HashMap<>();
     public ParkingTicket park(Car car){
-        ParkingTicket parkingTicket = new ParkingTicket(car);
-        parkingTickets.add(parkingTicket);
+        ParkingTicket parkingTicket = new ParkingTicket(car.getNumberPlate());
+        parkingTicketCarMap.put(parkingTicket,car);
         return parkingTicket;
     }
     public Car fetchCarByParkingTicket(ParkingTicket parkingTicket){
-        Boolean isContainCar = parkingTickets.contains(parkingTicket);
-        if(isContainCar){
-            ParkingTicket parkingTicketA = parkingTickets.stream()
-                                            .filter(parkingTicket1 -> parkingTicket1.equals(parkingTicket))
-                                            .collect(Collectors.toList())
-                                            .get(0);
-            Car car = parkingTicketA.getCar();
-            parkingTickets.remove(parkingTicket);
-            return car;
-        }else{
-            return null;
-        }
+        return parkingTicketCarMap.get(parkingTicket);
     }
 
 }
