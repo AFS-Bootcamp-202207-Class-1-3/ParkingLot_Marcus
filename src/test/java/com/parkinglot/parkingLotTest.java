@@ -79,5 +79,27 @@ public class parkingLotTest {
                 ,()->parkingLot.park(testCar2));
         Assertions.assertEquals("No available position.",exception.getMessage());
     }
-
+    @Test
+    public void should_return_parkingTicket_when_park_given_carAndParkingBoy(){
+//        given
+        ParkingLot parkingLot = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car("123");
+//        when
+        ParkingTicket parkingTicket = parkingBoy.park(car);
+//        then
+        Assertions.assertNotNull(parkingTicket);
+    }
+    @Test
+    public void should_return_rightCar_when_parkingBoyFetch_given_correctParkingTicket(){
+//        given
+        ParkingLot parkingLot = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car testCar = new Car("123");
+        ParkingTicket parkingTicket = parkingBoy.park(testCar);
+//        when
+        Car fetchCar = parkingBoy.fetch(parkingTicket);
+//        then
+        Assertions.assertEquals(fetchCar,testCar);
+    }
 }
