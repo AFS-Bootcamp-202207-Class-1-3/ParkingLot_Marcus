@@ -129,4 +129,18 @@ public class parkingLotTest {
                 ,()->parkingBoy.fetch(parkingTicket));
         Assertions.assertEquals("Unrecognized parking ticket",exception.getMessage());
     }
+    @Test
+    public void should_returnNoPositionMessage_when_parkingBoyPark_given_noPosition(){
+//        given
+        Car testCar = new Car("123");
+        Car testCar2 = new Car("345");
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+//        when
+        ParkingTicket parkingTicket = parkingBoy.park(testCar);
+//        then
+        Exception exception = Assertions.assertThrows(WithoutAnyPositionException.class
+                ,()->parkingBoy.park(testCar2));
+        Assertions.assertEquals("No available position.",exception.getMessage());
+    }
 }
