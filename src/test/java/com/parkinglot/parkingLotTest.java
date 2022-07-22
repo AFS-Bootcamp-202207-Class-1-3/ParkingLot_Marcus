@@ -1,9 +1,6 @@
 package com.parkinglot;
 
-import com.parkinglot.entity.Car;
-import com.parkinglot.entity.ParkingLot;
-import com.parkinglot.entity.ParkingTicket;
-import com.parkinglot.entity.UnrecognizedParkingTicketException;
+import com.parkinglot.entity.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -64,22 +61,23 @@ public class parkingLotTest {
         ParkingTicket parkingTicket = parkingLot.park(testCar);
 //        when
         Car carOne = parkingLot.fetchCarByParkingTicket(parkingTicket);
-        Exception exception = Assertions.assertThrows(UnrecognizedParkingTicketException.class
-                            ,()->parkingLot.fetchCarByParkingTicket(parkingTicket));
 //        then
+        Exception exception = Assertions.assertThrows(UnrecognizedParkingTicketException.class
+                ,()->parkingLot.fetchCarByParkingTicket(parkingTicket));
         Assertions.assertEquals("Unrecognized parking ticket",exception.getMessage());
     }
     @Test
-    public void should_canNotPark_when_park_given_noPosition(){
+    public void should_returnNoPositionMessage_when_park_given_noPosition(){
 //        given
         Car testCar = new Car("123");
         Car testCar2 = new Car("345");
         ParkingLot parkingLot = new ParkingLot(1);
 //        when
         ParkingTicket parkingTicket = parkingLot.park(testCar);
-        ParkingTicket parkingTicket2 = parkingLot.park(testCar2);
 //        then
-        Assertions.assertNull(parkingTicket2);
+        Exception exception = Assertions.assertThrows(WithoutAnyPositionException.class
+                ,()->parkingLot.park(testCar2));
+        Assertions.assertEquals("No available position.",exception.getMessage());
     }
 
 }

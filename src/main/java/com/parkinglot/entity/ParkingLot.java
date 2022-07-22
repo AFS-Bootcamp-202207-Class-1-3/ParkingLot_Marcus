@@ -18,7 +18,7 @@ public class ParkingLot {
             positionNumber -= 1;
             return parkingTicket;
         } else {
-            return null;
+            throw new WithoutAnyPositionException();
         }
     }
 
