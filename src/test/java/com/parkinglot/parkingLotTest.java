@@ -49,23 +49,25 @@ public class parkingLotTest {
 //        given
         ParkingLot parkingLot = new ParkingLot(10);
         ParkingTicket unrecognizedParkingTicket = new ParkingTicket();
-//        when
+
+//      when  then
         Exception exception = Assertions.assertThrows(UnrecognizedParkingTicketException.class
-                                ,()-> parkingLot.fetchCarByParkingTicket(unrecognizedParkingTicket));
+                ,()-> parkingLot.fetchCarByParkingTicket(unrecognizedParkingTicket));
         Assertions.assertEquals("Unrecognized parking ticket",exception.getMessage());
 
     }
     @Test
-    public void should_return_null_when_fetchCarByParkingTicket_given_usedParkingTicket(){
+    public void should_return_errorMessage_when_fetchCarByParkingTicket_given_usedParkingTicket(){
 //        given
         Car testCar = new Car("123");
         ParkingLot parkingLot = new ParkingLot(10);
         ParkingTicket parkingTicket = parkingLot.park(testCar);
 //        when
         Car carOne = parkingLot.fetchCarByParkingTicket(parkingTicket);
-        Car carTwo = parkingLot.fetchCarByParkingTicket(parkingTicket);
+        Exception exception = Assertions.assertThrows(UnrecognizedParkingTicketException.class
+                            ,()->parkingLot.fetchCarByParkingTicket(parkingTicket));
 //        then
-        Assertions.assertNull(carTwo);
+        Assertions.assertEquals("Unrecognized parking ticket",exception.getMessage());
     }
     @Test
     public void should_canNotPark_when_park_given_noPosition(){
