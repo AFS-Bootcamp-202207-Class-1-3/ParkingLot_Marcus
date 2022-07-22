@@ -3,6 +3,7 @@ package com.parkinglot;
 import com.parkinglot.entity.Car;
 import com.parkinglot.entity.ParkingLot;
 import com.parkinglot.entity.ParkingTicket;
+import com.parkinglot.entity.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -44,15 +45,15 @@ public class parkingLotTest {
         Assertions.assertEquals(testCar2,car2);
     }
     @Test
-    public void should_return_null_when_fetchCarByParkingTicket_given_wrongParkingTicket(){
+    public void should_return_errorMessage_when_fetchCarByParkingTicket_given_wrongParkingTicket(){
 //        given
-
         ParkingLot parkingLot = new ParkingLot(10);
-        ParkingTicket parkingTicket = new ParkingTicket();
+        ParkingTicket unrecognizedParkingTicket = new ParkingTicket();
 //        when
-        Car car = parkingLot.fetchCarByParkingTicket(parkingTicket);
-//        then
-        Assertions.assertNull(car);
+        Exception exception = Assertions.assertThrows(UnrecognizedParkingTicketException.class
+                                ,()-> parkingLot.fetchCarByParkingTicket(unrecognizedParkingTicket));
+        Assertions.assertEquals("Unrecognized parking ticket",exception.getMessage());
+
     }
     @Test
     public void should_return_null_when_fetchCarByParkingTicket_given_usedParkingTicket(){
@@ -78,4 +79,5 @@ public class parkingLotTest {
 //        then
         Assertions.assertNull(parkingTicket2);
     }
+
 }
