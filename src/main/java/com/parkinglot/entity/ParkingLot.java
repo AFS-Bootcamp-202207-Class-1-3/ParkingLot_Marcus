@@ -6,4 +6,7 @@ public class ParkingLot {
 
         return new ParkingTicket();
     }
+    public Car fetchCarByParkingTicket(ParkingTicket parkingTicket){
+        return new Car();
+    }
 }
