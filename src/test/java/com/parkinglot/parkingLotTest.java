@@ -255,4 +255,34 @@ public class parkingLotTest {
                 , () -> standardParkingBoy.park(testCar3));
         Assertions.assertEquals("No available position.", exception.getMessage());
     }
+    @Test
+    public void should_return_firstParkingLotSizeReduceOne_when_smartParkingBoyPark_given_carAndSamePositions() {
+//        given
+        Car testCar = new Car("123");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot(10));
+        parkingLots.add(new ParkingLot(10));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+//        when
+        ParkingTicket parkingTicket = smartParkingBoy.park(testCar);
+//        then
+        Assertions.assertEquals(9, smartParkingBoy.getParkingLots().get(0).getPositionNumber());
+        Assertions.assertEquals(10, smartParkingBoy.getParkingLots().get(1).getPositionNumber());
+    }
+    @Test
+    public void should_reduce_parking_lots_with_more_parking_spaces_when_smartParkingBoyPark_given_car() {
+//        given
+        Car testCar1 = new Car("123");
+        Car testCar2 = new Car("234");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot(10));
+        parkingLots.add(new ParkingLot(10));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+//        when
+        ParkingTicket parkingTicket1 = smartParkingBoy.park(testCar1);
+        ParkingTicket parkingTicket2 = smartParkingBoy.park(testCar2);
+//        then
+        Assertions.assertEquals(9, smartParkingBoy.getParkingLots().get(0).getPositionNumber());
+        Assertions.assertEquals(9, smartParkingBoy.getParkingLots().get(1).getPositionNumber());
+    }
 }
