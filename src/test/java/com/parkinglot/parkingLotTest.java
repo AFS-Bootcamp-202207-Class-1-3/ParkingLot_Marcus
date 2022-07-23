@@ -172,5 +172,20 @@ public class parkingLotTest {
         Assertions.assertEquals(10, standardParkingBoy.getParkingLots().get(1).getPositionNumber());
     }
 
-
+    @Test
+    public void should_parkOtherParkingLot__when_firstParkingLotWithNoSize_given_car() {
+//        given
+        Car testCar1 = new Car("123");
+        Car testCar2 = new Car("456");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(10));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+//        when
+        ParkingTicket parkingTicket1 = standardParkingBoy.park(testCar1);
+        ParkingTicket parkingTicket2 = standardParkingBoy.park(testCar2);
+//        then
+        Assertions.assertEquals(0, standardParkingBoy.getParkingLots().get(0).getPositionNumber());
+        Assertions.assertEquals(9, standardParkingBoy.getParkingLots().get(1).getPositionNumber());
+    }
 }

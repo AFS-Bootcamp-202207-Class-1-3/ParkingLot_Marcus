@@ -11,7 +11,11 @@ public class StandardParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLots.get(0).park(car);
+        if(parkingLots.get(0).getPositionNumber()>0){
+            return parkingLots.get(0).park(car);
+        }else{
+            return parkingLots.get(1).park(car);
+        }
     }
 
     public List<ParkingLot> getParkingLots() {
