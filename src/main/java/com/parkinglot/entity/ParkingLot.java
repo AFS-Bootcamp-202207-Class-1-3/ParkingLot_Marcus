@@ -23,11 +23,14 @@ public class ParkingLot {
     }
 
     public Car fetchCarByParkingTicket(ParkingTicket parkingTicket) {
-        if(parkingTicketCarMap.containsKey(parkingTicket)){
+        if (parkingTicketCarMap.containsKey(parkingTicket)) {
             return parkingTicketCarMap.remove(parkingTicket);
-        }else{
+        } else {
             throw new UnrecognizedParkingTicketException();
         }
     }
 
+    public int getPositionNumber() {
+        return positionNumber;
+    }
 }
