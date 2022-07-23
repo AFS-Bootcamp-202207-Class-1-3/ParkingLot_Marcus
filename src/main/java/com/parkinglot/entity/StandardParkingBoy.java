@@ -9,7 +9,9 @@ public class StandardParkingBoy {
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
-
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
     public ParkingTicket park(Car car) {
         if(parkingLots.get(0).getPositionNumber()>0){
             return parkingLots.get(0).park(car);
@@ -17,8 +19,13 @@ public class StandardParkingBoy {
             return parkingLots.get(1).park(car);
         }
     }
-
-    public List<ParkingLot> getParkingLots() {
-        return parkingLots;
+    public Car fetch(ParkingTicket parkingTicket) {
+        for(ParkingLot parkingLot:parkingLots){
+            if(parkingLot.getParkingTicketCarMap().containsKey(parkingTicket)){
+                return parkingLot.fetchCarByParkingTicket(parkingTicket);
+            }
+        }
+        throw new UnrecognizedParkingTicketException();
     }
+
 }

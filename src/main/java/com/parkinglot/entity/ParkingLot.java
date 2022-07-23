@@ -24,6 +24,7 @@ public class ParkingLot {
 
     public Car fetchCarByParkingTicket(ParkingTicket parkingTicket) {
         if (parkingTicketCarMap.containsKey(parkingTicket)) {
+            positionNumber += 1;
             return parkingTicketCarMap.remove(parkingTicket);
         } else {
             throw new UnrecognizedParkingTicketException();
@@ -32,5 +33,9 @@ public class ParkingLot {
 
     public int getPositionNumber() {
         return positionNumber;
+    }
+
+    public Map<ParkingTicket, Car> getParkingTicketCarMap() {
+        return parkingTicketCarMap;
     }
 }
