@@ -1,6 +1,11 @@
 package com.parkinglot;
 
 import com.parkinglot.entity.*;
+import com.parkinglot.exception.UnrecognizedParkingTicketException;
+import com.parkinglot.exception.WithoutAnyPositionException;
+import com.parkinglot.implement.SmartParking;
+import com.parkinglot.implement.StandardParking;
+import com.parkinglot.implement.SuperSmartParking;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -165,6 +170,7 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        standardParkingBoy.setParkCarStrategy(new StandardParking());
 //        when
         ParkingTicket parkingTicket = standardParkingBoy.park(testCar);
 //        then
@@ -181,6 +187,7 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(10));
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        standardParkingBoy.setParkCarStrategy(new StandardParking());
 //        when
         ParkingTicket parkingTicket1 = standardParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = standardParkingBoy.park(testCar2);
@@ -197,6 +204,7 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(10));
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        standardParkingBoy.setParkCarStrategy(new StandardParking());
         ParkingTicket parkingTicket1 = standardParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = standardParkingBoy.park(testCar2);
 //        when
@@ -213,6 +221,7 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(10));
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        standardParkingBoy.setParkCarStrategy(new StandardParking());
         ParkingTicket parkingTicket = new ParkingTicket();
 //        when
 //        then
@@ -228,6 +237,7 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(10));
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        standardParkingBoy.setParkCarStrategy(new StandardParking());
         ParkingTicket parkingTicket = standardParkingBoy.park(testCar);
 //        when
         standardParkingBoy.fetch(parkingTicket);
@@ -247,6 +257,7 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
 
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        standardParkingBoy.setParkCarStrategy(new StandardParking());
 //        when
         ParkingTicket parkingTicket1 = standardParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = standardParkingBoy.park(testCar2);
@@ -262,7 +273,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        StandardParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.setParkCarStrategy(new SmartParking());
 //        when
         ParkingTicket parkingTicket = smartParkingBoy.park(testCar);
 //        then
@@ -277,7 +289,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        StandardParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.setParkCarStrategy(new SmartParking());
 //        when
         ParkingTicket parkingTicket1 = smartParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = smartParkingBoy.park(testCar2);
@@ -293,7 +306,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        StandardParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.setParkCarStrategy(new SmartParking());
         ParkingTicket parkingTicket1 = smartParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = smartParkingBoy.park(testCar2);
 //        when
@@ -309,7 +323,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        StandardParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.setParkCarStrategy(new SmartParking());
         ParkingTicket parkingTicket = new ParkingTicket();
 //        when
 //        then
@@ -324,7 +339,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        StandardParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.setParkCarStrategy(new SmartParking());
         ParkingTicket parkingTicket = smartParkingBoy.park(testCar);
 //        when
         smartParkingBoy.fetch(parkingTicket);
@@ -343,7 +359,8 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(1));
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        StandardParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy.setParkCarStrategy(new SmartParking());
 //        when
         ParkingTicket parkingTicket1 = smartParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = smartParkingBoy.park(testCar2);
@@ -359,7 +376,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        StandardParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.setParkCarStrategy(new SuperSmartParking());
 //        when
         ParkingTicket parkingTicket = superSmartParkingBoy.park(testCar);
 //        then
@@ -375,7 +393,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(15));
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        StandardParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.setParkCarStrategy(new SuperSmartParking());
 //        when
         ParkingTicket parkingTicket1 = superSmartParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = superSmartParkingBoy.park(testCar2);
@@ -392,7 +411,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        StandardParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.setParkCarStrategy(new SuperSmartParking());
         ParkingTicket parkingTicket1 = superSmartParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = superSmartParkingBoy.park(testCar2);
 //        when
@@ -408,7 +428,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        StandardParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.setParkCarStrategy(new SuperSmartParking());
         ParkingTicket parkingTicket = new ParkingTicket();
 //        when
 //        then
@@ -423,7 +444,8 @@ public class parkingLotTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(10));
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        StandardParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.setParkCarStrategy(new SuperSmartParking());
         ParkingTicket parkingTicket = superSmartParkingBoy.park(testCar);
 //        when
         superSmartParkingBoy.fetch(parkingTicket);
@@ -442,7 +464,8 @@ public class parkingLotTest {
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(1));
 
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        StandardParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.setParkCarStrategy(new SuperSmartParking());
 //        when
         ParkingTicket parkingTicket1 = superSmartParkingBoy.park(testCar1);
         ParkingTicket parkingTicket2 = superSmartParkingBoy.park(testCar2);

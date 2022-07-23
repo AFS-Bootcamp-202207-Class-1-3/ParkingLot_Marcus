@@ -1,4 +1,4 @@
-package com.parkinglot.entity;
+package com.parkinglot.exception;
 
 public class WithoutAnyPositionException extends RuntimeException {
     @Override
