@@ -13,10 +13,13 @@ public class StandardParkingBoy {
         return parkingLots;
     }
     public ParkingTicket park(Car car) {
-        if(parkingLots.get(0).getPositionNumber()>0){
-            return parkingLots.get(0).park(car);
+        ParkingLot parkingLot = parkingLots.stream()
+                                            .filter(oneParkingLot -> oneParkingLot.getPositionNumber()>0)
+                                            .findFirst().orElse(null);
+        if(parkingLot != null){
+            return parkingLot.park(car);
         }else{
-            return parkingLots.get(1).park(car);
+            throw new WithoutAnyPositionException();
         }
     }
     public Car fetch(ParkingTicket parkingTicket) {
