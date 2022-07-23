@@ -38,4 +38,9 @@ public class ParkingLot {
     public Map<ParkingTicket, Car> getParkingTicketCarMap() {
         return parkingTicketCarMap;
     }
+
+    public Double getRate(){
+
+        return positionNumber/((positionNumber+parkingTicketCarMap.size())*1.0);
+    }
 }

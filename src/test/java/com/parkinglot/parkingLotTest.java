@@ -366,4 +366,22 @@ public class parkingLotTest {
         Assertions.assertEquals(9, superSmartParkingBoy.getParkingLots().get(0).getPositionNumber());
         Assertions.assertEquals(10, superSmartParkingBoy.getParkingLots().get(1).getPositionNumber());
     }
+    @Test
+    public void should_reduce_parking_lots_with_high_rate_when_superSmartParkingBoyPark_given_car() {
+//        given
+        Car testCar1 = new Car("123");
+        Car testCar2 = new Car("234");
+        Car testCar3 = new Car("345");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot(10));
+        parkingLots.add(new ParkingLot(15));
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+//        when
+        ParkingTicket parkingTicket1 = superSmartParkingBoy.park(testCar1);
+        ParkingTicket parkingTicket2 = superSmartParkingBoy.park(testCar2);
+        ParkingTicket parkingTicket3 = superSmartParkingBoy.park(testCar3);
+//        then
+        Assertions.assertEquals(9, superSmartParkingBoy.getParkingLots().get(0).getPositionNumber());
+        Assertions.assertEquals(13, superSmartParkingBoy.getParkingLots().get(1).getPositionNumber());
+    }
 }
