@@ -352,4 +352,18 @@ public class parkingLotTest {
                 , () -> smartParkingBoy.park(testCar3));
         Assertions.assertEquals("No available position.", exception.getMessage());
     }
+    @Test
+    public void should_return_firstParkingLotSizeReduceOne_when_superSmartParkingBoyPark_given_carAndSamePositions() {
+//        given
+        Car testCar = new Car("123");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot(10));
+        parkingLots.add(new ParkingLot(10));
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+//        when
+        ParkingTicket parkingTicket = superSmartParkingBoy.park(testCar);
+//        then
+        Assertions.assertEquals(9, superSmartParkingBoy.getParkingLots().get(0).getPositionNumber());
+        Assertions.assertEquals(10, superSmartParkingBoy.getParkingLots().get(1).getPositionNumber());
+    }
 }
