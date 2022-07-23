@@ -3,7 +3,7 @@ package com.parkinglot.entity;
 import java.util.Comparator;
 import java.util.List;
 
-public class SuperSmartParkingBoy extends StandardParkingBoy {
+public class SuperSmartParkingBoy extends StandardParkingBoy{
     public SuperSmartParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
