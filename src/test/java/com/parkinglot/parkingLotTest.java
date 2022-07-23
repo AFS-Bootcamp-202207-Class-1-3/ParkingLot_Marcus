@@ -285,4 +285,22 @@ public class parkingLotTest {
         Assertions.assertEquals(9, smartParkingBoy.getParkingLots().get(0).getPositionNumber());
         Assertions.assertEquals(9, smartParkingBoy.getParkingLots().get(1).getPositionNumber());
     }
+    @Test
+    public void should_returnRightCar_when_smartParkingBoyFetchTwoCar_given_TwoTickets() {
+//        given
+        Car testCar1 = new Car("123");
+        Car testCar2 = new Car("456");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(10));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        ParkingTicket parkingTicket1 = smartParkingBoy.park(testCar1);
+        ParkingTicket parkingTicket2 = smartParkingBoy.park(testCar2);
+//        when
+        Car fetchCar1 = smartParkingBoy.fetch(parkingTicket1);
+        Car fetchCar2 = smartParkingBoy.fetch(parkingTicket2);
+//        then
+        Assertions.assertEquals(testCar1,fetchCar1);
+        Assertions.assertEquals(testCar2,fetchCar2);
+    }
 }
