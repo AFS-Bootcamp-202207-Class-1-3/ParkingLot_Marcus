@@ -1,15 +1,16 @@
 package com.parkinglot.entity;
 
 import com.parkinglot.exception.UnrecognizedParkingTicketException;
-import com.parkinglot.exception.WithoutAnyPositionException;
-import com.parkinglot.implement.StandardParking;
 import com.parkinglot.interfaces.ParkCarStrategy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StandardParkingBoy{
     private List<ParkingLot> parkingLots = new ArrayList<>();
+    private Map<ParkingTicket,ParkingLot> parkingTicketParkingLotMap = new HashMap<>();
     private ParkCarStrategy parkCarStrategy;
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
@@ -20,14 +21,12 @@ public class StandardParkingBoy{
     }
 
     public ParkingTicket park(Car car) {
-        return parkCarStrategy.park(car,parkingLots);
+        return parkCarStrategy.park(car,parkingLots,parkingTicketParkingLotMap);
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.getParkingTicketCarMap().containsKey(parkingTicket)) {
-                return parkingLot.fetchCarByParkingTicket(parkingTicket);
-            }
+        if(parkingTicketParkingLotMap.containsKey(parkingTicket)){
+            return parkingTicketParkingLotMap.remove(parkingTicket).fetchCarByParkingTicket(parkingTicket);
         }
         throw new UnrecognizedParkingTicketException();
     }
