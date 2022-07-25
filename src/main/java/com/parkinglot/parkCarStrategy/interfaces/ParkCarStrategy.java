@@ -1,4 +1,4 @@
-package com.parkinglot.interfaces;
+package com.parkinglot.parkCarStrategy.interfaces;
 
 import com.parkinglot.entity.Car;
 import com.parkinglot.entity.ParkingLot;

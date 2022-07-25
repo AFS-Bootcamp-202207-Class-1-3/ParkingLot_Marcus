@@ -1,7 +1,7 @@
 package com.parkinglot.entity;
 
 import com.parkinglot.exception.UnrecognizedParkingTicketException;
-import com.parkinglot.interfaces.ParkCarStrategy;
+import com.parkinglot.parkCarStrategy.interfaces.ParkCarStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,4 +34,5 @@ public class StandardParkingBoy{
     public void setParkCarStrategy(ParkCarStrategy parkCarStrategy) {
         this.parkCarStrategy = parkCarStrategy;
     }
+
 }
