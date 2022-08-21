@@ -6,7 +6,7 @@ import com.parkinglot.exception.WithoutAnyPositionException;
 import java.util.HashMap;
 import java.util.Map;
 public class ParkingLot {
-    private Map<ParkingTicket, Car> parkingTicketCarMap = new HashMap<>();
+    private final Map<ParkingTicket, Car> parkingTicketCarMap = new HashMap<>();
     private int positionNumber;
 
     public ParkingLot(int positionNumber) {

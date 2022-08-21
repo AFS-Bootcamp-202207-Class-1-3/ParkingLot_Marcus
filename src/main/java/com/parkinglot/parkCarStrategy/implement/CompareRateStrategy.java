@@ -13,9 +13,7 @@ import java.util.Map;
 public class CompareRateStrategy implements ParkCarStrategy {
     @Override
     public ParkingTicket park(Car car, List<ParkingLot> parkingLots, Map<ParkingTicket,ParkingLot> parkingTicketParkingLotMap) {
-        ParkingLot parkingLot = parkingLots.stream()
-                .sorted(Comparator.comparing(ParkingLot::getRate).reversed())
-                .findFirst().orElse(null);
+        ParkingLot parkingLot = parkingLots.stream().max(Comparator.comparing(ParkingLot::getRate)).orElse(null);
         if (parkingLot != null) {
             ParkingTicket parkingTicket = parkingLot.park(car);
             parkingTicketParkingLotMap.put(parkingTicket,parkingLot);
